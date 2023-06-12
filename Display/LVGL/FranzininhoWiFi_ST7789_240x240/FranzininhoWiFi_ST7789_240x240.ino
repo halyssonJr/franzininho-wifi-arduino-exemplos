@@ -63,9 +63,7 @@ void init_screen(lv_obj_t* init_obj)
 
     init_screen_btn = lv_btn_create(init_main_bg,NULL);
     lv_obj_align(init_screen_btn,NULL,LV_ALIGN_IN_BOTTOM_MID,0,-10);
-    lv_btn_set_checkable(init_screen_btn,true);
     lv_btn_set_fit2(init_screen_btn, LV_FIT_NONE, LV_FIT_TIGHT);
-//    lv_obj_set_event_cb(init_screen_btn,button_event_cb);
 
     label_btn = lv_label_create(init_screen_btn,NULL);
     lv_label_set_text(label_btn,"Iniciar");
@@ -123,7 +121,7 @@ void setup()
   
   
   tft.begin(); // Inicializa o barramento SPI       
-  tft.setRotation(1); // Orientação na tela (1) Landscape
+  tft.setRotation(4); // Orientação na tela (1) Landscape
   
   //Inicializa a lvgl
   lv_init();
@@ -139,8 +137,8 @@ void setup()
   lv_disp_drv_init(&disp_drv);
   
   // Caso deseje alterar a resolução manualmente
-//    disp_drv.hor_res = 240;
-//    disp_drv.ver_res = 240;
+    disp_drv.hor_res = 240;
+    disp_drv.ver_res = 240;
   
   // Registra a função de callback para limpar a tela
   disp_drv.flush_cb = disp_flush;
