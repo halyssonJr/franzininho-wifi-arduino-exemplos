@@ -7,10 +7,15 @@
 #include <esp_wifi.h>
 #include <WiFi.h>
 
-//Incluir o arquivo de configuração para acessar a Adafruit IO
-#include "config.h"
+// Incluir a biblioteca da Adafruit IO 
+#include "AdafruitIO_WiFi.h"
 
-#define CHANNEL 1
+#define IO_USERNAME "Seu usuário"
+#define IO_KEY      "Sua chave"
+
+#define WIFI_SSID "Nome da rede local"
+#define WIFI_PASS "Senha da rede" 
+
 //Define o nome do dispositivo
 #define SSID_ESP_NOW "Franz_Sensor"
 
@@ -23,6 +28,9 @@ struct data_t
 };
 struct data_t  dht;
 bool is_recv = false;
+
+//Declarando o construtor da classe
+AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 
 //Configurando os feeds de acordo com o nome criado
 AdafruitIO_Feed *temp_adafruit = io.feed("temperatura");
@@ -66,10 +74,9 @@ void setup()
   
   // Inicializa comunicação Serial com baudrate de 115200 bps
   Serial.begin(115200);
-  while(!Serial)
-  {
-    ;
-  }
+  //Enquanto o Monitor Serial não for aberto, fique aguardando
+  while(!Serial);
+  
   delay(1000);
   
   Serial.print("Conectando ao Adafruit IO");
