@@ -15,6 +15,7 @@ void on_recv_data (const uint8_t * mac_addr, const uint8_t *data, int data_len)
 {
   char mac_str[20];
   char msg[] = {"Oi Franzininho, estou bem, obrigado !"};
+  
   snprintf(mac_str, 
            sizeof(mac_str), 
            "%02x:%02x:%02x:%02x:%02x:%02x",
